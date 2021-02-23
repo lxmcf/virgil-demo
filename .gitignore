@@ -1,0 +1,6 @@
+build/
+subprojects/
+
+*~
+
+.DS_Store

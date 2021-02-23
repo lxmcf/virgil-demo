@@ -1,0 +1,54 @@
+#!/bin/bash
+
+FRESH="false"
+RUN="false"
+VERBOSE="false"
+
+for VARIABLE in "$@"; do
+    case $VARIABLE in
+        --fresh | -f)
+            FRESH="true"
+            ;;
+
+        --run | -r)
+            RUN="true"
+            ;;
+
+        --verbose | -v)
+            VERBOSE="true"
+            ;;
+    esac
+done
+
+if [ $FRESH == "true" ]; then
+    rm -r "build"
+fi
+
+
+
+echo -e "\e[1m\e[93m=== \e[32mCreating Build Environment\e[93m ===\e[39m"
+
+if [ ! -d "build" ]; then
+    echo -e "\e[1m\e[93m=== \e[32mCreating Build Environment\e[93m ===\e[39m"
+
+    if [ $VERBOSE == "false" ]; then
+        meson build > /dev/null
+    else
+        meson build
+    fi
+fi
+
+echo -e "\e[1m\e[93m=== \e[32mCompiling Project\e[93m ===\e[39m"
+ninja -C build
+
+if [ -d "build/res" ] ;then
+    rm -r "build/res"
+fi
+
+cp -r "res" "build/res"
+
+if [ $RUN == "true" ]; then
+    ./build/virgil-demo
+fi
+
+exit 0
