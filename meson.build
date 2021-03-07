@@ -20,5 +20,9 @@ executable (
     dependencies: [
         virgil.get_variable ('virgil_dep'),
         meson.get_compiler('c').find_library('m')
+    ],
+
+    include_directories: [
+        include_directories ('include')
     ]
 )
