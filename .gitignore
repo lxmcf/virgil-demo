@@ -1,6 +1,9 @@
 build/
 subprojects/
 
+.flatpak-builder/
+.flatpak/
+
 *~
 
 .DS_Store

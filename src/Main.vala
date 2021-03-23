@@ -1,27 +1,24 @@
-using Virgil;
 using Virgil.Graphics;
 using Virgil.Debug;
+using Virgil.Input;
 
-namespace Demo {
-    public class DemoGame : Game {
-        private DynamicTexture2D _texture;
+namespace Virgil {
+    public class Demo : Game {
+        private StaticTexture2D _texture;
         private GameState _state;
 
         public override void start () {
             _state = Game.get_state ();
 
-            int width, height, channels, pitch;
-            void* pixels = Stbi.load ("/.VolumeIcon.png", out width, out height, out channels);
-            void* new_pixels;
+            _texture = new StaticTexture2D.from_file ("/.VolumeIcon.png");
 
-            _texture = new DynamicTexture2D (width, height);
-            _texture.lock (_texture.get_bounds (), out new_pixels, out pitch);
-
-            Memory.copy (new_pixels, pixels, height * pitch);
-
-            _texture.unlock ();
+            TextureRaw text = new TextureRaw (32, 32);
 
             _state.window.title = "Virgil-Demo";
+        }
+
+        public override void update () {
+            if (Keyboard.check_key_released (SDL.Input.Keycode.ESCAPE)) { quit (); }
         }
 
         public override void draw () {
@@ -31,7 +28,7 @@ namespace Demo {
 }
 
 public static int main (string[] args) {
-    Demo.DemoGame game = new Demo.DemoGame ();
+    Virgil.Demo game = new Virgil.Demo ();
 
     return game.run ();
 }

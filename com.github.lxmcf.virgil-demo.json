@@ -1,0 +1,34 @@
+{
+    "app-id": "com.github.lxmcf.virgil-demo",
+    "runtime": "org.gnome.Platform",
+    "runtime-version": "3.38",
+    "sdk": "org.gnome.Sdk",
+    "command": "virgil-demo",
+    "cleanup": [
+        "/include",
+        "/lib/pkgconfig",
+        "/lib/debug",
+        "/share/vala",
+        "/man",
+        "*.a",
+        "*.la"
+    ],
+    "finish-args": [
+        "--socket=fallback-x11",
+        "--socket=wayland",
+        "--device=dri",
+        "--share=network"
+    ],
+    "modules": [
+        {
+            "name": "virgil-demo",
+            "buildsystem": "meson",
+            "sources": [
+                {
+                    "type": "dir",
+                    "path": "."
+                }
+            ]
+        }
+    ]
+}
