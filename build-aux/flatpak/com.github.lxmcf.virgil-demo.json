@@ -15,18 +15,35 @@
     ],
     "finish-args": [
         "--socket=fallback-x11",
+        "--socket=pulseaudio",
         "--socket=wayland",
-        "--device=dri",
-        "--share=network"
+        "--device=dri"
     ],
     "modules": [
+        {
+            "name": "virgil",
+            "buildsystem": "meson",
+            "config-opts": [
+                "--default-library=static",
+                "--prefix=/app",
+
+                "-Dbuild_type=flatpak",
+                "-Dprofile=development"
+            ],
+            "sources": [
+                {
+                    "type": "dir",
+                    "path": "../../../virgil-devel"
+                }
+            ]
+        },
         {
             "name": "virgil-demo",
             "buildsystem": "meson",
             "sources": [
                 {
                     "type": "dir",
-                    "path": "."
+                    "path": "../../"
                 }
             ]
         }

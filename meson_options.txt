@@ -1,0 +1,2 @@
+option ('build_type', type: 'combo', choices: [ 'flatpak', 'legacy' ], value: 'legacy')
+option ('profile', type: 'combo', choices: [ 'release', 'development' ], value: 'development')

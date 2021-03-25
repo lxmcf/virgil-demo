@@ -6,7 +6,7 @@
         {
             "label": "Compile Project",
             "type": "shell",
-            "command": "meson build && ninja -C build",
+            "command": "meson build/meson && ninja -C build/meson",
             "problemMatcher": "$valac",
             "group": {
                 "kind": "build",
@@ -16,13 +16,25 @@
         {
             "label": "Clean Build Environment",
             "type": "shell",
-            "command": "rm -r build",
+            "command": "rm -rf build/*",
             "problemMatcher": []
         },
         {
             "label": "Run Project",
             "type": "shell",
-            "command": "build/virgil-demo",
+            "command": "build/meson/virgil-demo",
+            "problemMatcher": []
+        },
+        {
+            "label": "Build flatpak",
+            "type": "shell",
+            "command": "flatpak-builder --user --install build/flatpak build-aux/flatpak/com.github.lxmcf.virgil-demo.json --force-clean",
+            "problemMatcher": []
+        },
+        {
+            "label": "Run flatpak",
+            "type": "shell",
+            "command": "flatpak run com.github.lxmcf.virgil-demo",
             "problemMatcher": []
         }
     ]

@@ -9,16 +9,26 @@ namespace Virgil {
 
         public override void start () {
             _state = Game.get_state ();
-
             _texture = new StaticTexture2D.from_file ("/.VolumeIcon.png");
 
-            TextureRaw text = new TextureRaw (32, 32);
+            //  uchar[] _pixels = new uchar [12];
+            //  for (int i = 0; i < 12; i++) {
+            //      if ((i + 1) % 4 == 0) {
+            //          _pixels[i] = 0;
 
-            _state.window.title = "Virgil-Demo";
+            //          print_message (i.to_string ());
+            //      } else {
+            //          _pixels[i] = 255;
+            //      }
+            //  }
+
+            //  _texture.set_pixels (_pixels);
+
+            //  _state.window.title = "Virgil-Demo";
         }
 
         public override void update () {
-            if (Keyboard.check_key_released (SDL.Input.Keycode.ESCAPE)) { quit (); }
+            if (Keyboard.check_key_released ("Escape")) { quit (); }
         }
 
         public override void draw () {
