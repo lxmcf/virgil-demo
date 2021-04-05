@@ -1,5 +1,9 @@
 build/
 subprojects/
+vapi/
+
+.flatpak-builder/
+.flatpak/
 
 *~
 
