@@ -14,7 +14,7 @@ if vala_lint.found ()
 endif
 
 if use_subproject
-    virgil = subproject ('virgil-devel')
+    virgil = subproject ('virgil')
     demo_dependencies = [ virgil.get_variable ('libvirgil_dep') ]
 else
     demo_dependencies = [ dependency ('virgil') ]
