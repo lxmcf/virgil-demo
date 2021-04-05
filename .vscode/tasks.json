@@ -6,7 +6,7 @@
         {
             "label": "Compile Project",
             "type": "shell",
-            "command": "meson build/meson && ninja -C build/meson",
+            "command": "meson build/meson -Duse-subproject=true --default-library=static && ninja -C build/meson",
             "problemMatcher": "$valac",
             "group": {
                 "kind": "build",
@@ -36,6 +36,12 @@
             "type": "shell",
             "command": "flatpak run com.github.lxmcf.virgil-demo",
             "problemMatcher": []
-        }
+        },
+        {
+            "label": "Clean Flatpak Environment",
+            "type": "shell",
+            "command": "rm -r .flatpak .flatpak-builder",
+            "problemMatcher": []
+        },
     ]
 }

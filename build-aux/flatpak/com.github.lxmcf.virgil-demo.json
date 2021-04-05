@@ -17,7 +17,8 @@
         "--socket=fallback-x11",
         "--socket=pulseaudio",
         "--socket=wayland",
-        "--device=dri"
+        "--device=dri",
+        "--filesystem=host"
     ],
     "modules": [
         {
@@ -25,7 +26,6 @@
             "buildsystem": "meson",
             "config-opts": [
                 "--default-library=static",
-                "--prefix=/app",
 
                 "-Dbuild_type=flatpak",
                 "-Dprofile=development"
