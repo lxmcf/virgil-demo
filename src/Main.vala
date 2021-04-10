@@ -45,23 +45,32 @@ namespace Virgil {
         }
 
         public void refresh_texture () {
+            Colour colour = new Colour ();
+
             for (int y = 0; y < _texture_raw.height; y++) {
                 for (int x = 0; x < _texture_raw.width; x++) {
-                    double perlin = Virgil.Math.Perlin.get_noise_2D (x, y, 0.01, 10);
+                    float perlin = Virgil.Math.Perlin.get_noise_2D (x, y, 0.01f, 10);
 
                     if (perlin < 0.5) {
-                        _texture_raw.set_pixel (x, y, 68, 64, 119, 255);
+                        colour.set_values (68, 64, 119);
                     } else {
-                         if (perlin > 0.5 && perlin < 0.51) {
-                            _texture_raw.set_pixel (x, y, 206, 187, 142, 255);
-                         } else {
-                             if (perlin > 0.8) {
-                                _texture_raw.set_pixel (x, y, 230, 230, 230, 255);
-                             } else {
-                                _texture_raw.set_pixel (x, y, 79, 135, 87, 255);
+                        if (perlin > 0.5 && perlin < 0.51) {
+                            // Sand
+                            colour.set_values (206, 187, 142);
+                        } else {
+                            if (perlin > 0.8) {
+                                // Snow
+                                colour.set_values (230, 230, 230);
+                            } else {
+                                // Grass
+                                colour.set_values (79, 135, 87);
                             }
                         }
                     }
+
+                    colour.manipulate (perlin);
+
+                    _texture_raw.set_pixel_colour (x, y, colour);
                 }
             }
         }
