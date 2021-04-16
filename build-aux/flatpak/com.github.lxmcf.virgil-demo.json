@@ -33,7 +33,7 @@
             "sources": [
                 {
                     "type": "dir",
-                    "path": "../../../virgil-devel"
+                    "path": "../../../virgil"
                 }
             ]
         },

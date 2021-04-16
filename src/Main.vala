@@ -8,9 +8,11 @@ namespace Virgil {
         private TextureRaw _texture_raw;
 
         private GameState _state;
+        private RenderQueue _queue;
 
         public override void start () {
             _state = Game.get_state ();
+            _queue = new RenderQueue ();
 
             _texture_raw = new TextureRaw (640, 360);
 
@@ -36,12 +38,8 @@ namespace Virgil {
         }
 
         public override void draw () {
-            int sprite_width, sprite_height;
-
-            _texture.get_size (out sprite_width, out sprite_height);
-            Point point = new Point ((_state.window.width / 2) - (sprite_width / 2), (_state.window.height / 2) - (sprite_height / 2));
-
-            _state.renderer.render_texture_point (_texture, point);
+            _queue.render_texture (_texture, 0, 0);
+            _queue.render ();
         }
 
         public void refresh_texture () {
