@@ -68,7 +68,7 @@ namespace Virgil {
                         }
                     }
 
-                    colour.manipulate (perlin);
+                    colour.manipulate ((perlin + 0.1f).clamp (0.0f, 1.0f));
 
                     _texture_raw.set_pixel_colour (x, y, colour);
                 }

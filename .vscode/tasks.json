@@ -6,7 +6,7 @@
         {
             "label": "Compile Project",
             "type": "shell",
-            "command": "meson build/meson -Duse-subproject=true --default-library=static && ninja -C build/meson",
+            "command": "meson build/meson -Duse-subproject=${input:subproject} --default-library=static && ninja -C build/meson",
             "problemMatcher": "$valac",
             "group": {
                 "kind": "build",
@@ -43,5 +43,18 @@
             "command": "rm -r .flatpak .flatpak-builder",
             "problemMatcher": []
         },
+    ],
+
+    "inputs": [
+        {
+            "id": "subproject",
+            "type": "pickString",
+            "options": [
+                "true",
+                "false"
+            ],
+            "description": "Whether to use Virgil as a subproject",
+            "default": "false"
+        }
     ]
 }
