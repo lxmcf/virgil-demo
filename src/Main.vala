@@ -1,6 +1,7 @@
 using Virgil.Graphics;
 using Virgil.Debug;
 using Virgil.Input;
+using Virgil.Math;
 
 namespace Virgil {
     public class Demo : Game {
@@ -10,11 +11,14 @@ namespace Virgil {
         private GameState _state;
         private RenderQueue _queue;
 
+        private PerlinGenerator _perlin;
+
         public override void start () {
             _state = Game.get_state ();
             _queue = new RenderQueue ();
 
             _texture_raw = new TextureRaw (640, 360);
+            _perlin = new PerlinGenerator ();
 
             refresh_texture ();
 
@@ -29,7 +33,7 @@ namespace Virgil {
             }
 
             if (Keyboard.check_key_released ("Space")) {
-                Virgil.Math.Perlin.randomise ();
+                _perlin.randomise ();
 
                 refresh_texture ();
 
@@ -47,7 +51,7 @@ namespace Virgil {
 
             for (int y = 0; y < _texture_raw.height; y++) {
                 for (int x = 0; x < _texture_raw.width; x++) {
-                    float perlin = Virgil.Math.Perlin.get_noise_2D (x, y, 0.01f, 10);
+                    float perlin = _perlin.get_noise_2D (x, y, 0.01f, 10);
 
                     if (perlin < 0.5) {
                         colour.set_values (68, 64, 119);
