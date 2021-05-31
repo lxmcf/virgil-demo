@@ -1,3 +1,5 @@
 project_sources = files (
-    'Main.vala'
+    'Main.vala',
+
+    'Scene/Perlin.vala'
 )
