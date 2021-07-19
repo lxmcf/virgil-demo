@@ -5,7 +5,7 @@ using Virgil.Math;
 
 namespace Virgil {
     public class Demo : Game {
-        private StaticTexture2D _texture;
+        private DynamicTexture2D _texture;
         private TextureRaw _texture_raw;
 
         private GameState _state;
@@ -22,7 +22,7 @@ namespace Virgil {
 
             refresh_texture ();
 
-            _texture = new StaticTexture2D.from_texture_raw (_texture_raw);
+            _texture = new DynamicTexture2D.from_texture_raw (_texture_raw);
 
             _state.window.title = "Virgil - Demo";
         }
@@ -35,9 +35,16 @@ namespace Virgil {
             if (Keyboard.check_key_released ("Space")) {
                 _perlin.randomise ();
 
+                uchar* pixels;
+                int pitch;
+
+                _texture.lock (null, out pixels, out pitch);
+
                 refresh_texture ();
 
-                _texture.set_pixels (_texture_raw.get_pixels ());
+                Memory.copy (pixels, _texture_raw.get_pixels (), pitch * _texture_raw.height);
+
+                _texture.unlock ();
             }
         }
 

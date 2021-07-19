@@ -4,7 +4,7 @@ using Virgil.Input;
 using Virgil.Math;
 
 namespace Virgil.Scene {
-    public class Perlin : Scene{
+    public class Perlin : Virgil.SceneManagement.Scene{
         private StaticTexture2D* _texture;
         private TextureRaw* _texture_raw;
 
